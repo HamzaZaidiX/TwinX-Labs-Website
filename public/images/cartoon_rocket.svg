@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300">
+  <g stroke="#000" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Smoke trail -->
+    <g fill="#fff">
+      <circle cx="40" cy="170" r="6"/>
+      <circle cx="55" cy="165" r="8"/>
+      <circle cx="75" cy="160" r="10"/>
+      <circle cx="95" cy="157" r="11"/>
+      <circle cx="118" cy="154" r="12"/>
+      <circle cx="143" cy="150" r="13"/>
+      <circle cx="170" cy="147" r="14"/>
+      <circle cx="198" cy="144" r="15"/>
+      <circle cx="228" cy="141" r="16"/>
+      <circle cx="260" cy="138" r="17"/>
+      <circle cx="294" cy="136" r="18"/>
+      <circle cx="330" cy="133" r="19"/>
+      <circle cx="367" cy="131" r="20"/>
+      <circle cx="405" cy="129" r="21"/>
+      <circle cx="444" cy="127" r="22"/>
+      <circle cx="485" cy="125" r="23"/>
+    </g>
+
+    <!-- Flame -->
+    <path d="M505 125 C470 112 450 115 430 125 C452 132 468 145 505 140 C492 132 495 128 505 125Z"
+          fill="#ff6a00" stroke="none"/>
+    <path d="M498 128 C470 122 455 125 442 132 C460 136 474 140 500 136 C492 132 493 130 498 128Z"
+          fill="#ffd43b" stroke="none"/>
+
+    <!-- Nozzle -->
+    <rect x="500" y="110" width="24" height="40" rx="4" fill="#fff"/>
+    <rect x="524" y="100" width="24" height="60" fill="#e53935"/>
+
+    <!-- Rocket body -->
+    <path d="M548 95
+             C620 75 740 75 835 115
+             C740 155 620 155 548 135 Z"
+          fill="#fff"/>
+
+    <!-- Nose -->
+    <path d="M835 115 L885 135 L835 155 Z" fill="#d32f2f"/>
+
+    <!-- Top fin -->
+    <path d="M560 95 L520 55 L590 75 Z" fill="#fff"/>
+
+    <!-- Bottom fin -->
+    <path d="M560 135 L520 195 L595 170 Z" fill="#fff"/>
+
+    <!-- Window -->
+    <circle cx="700" cy="125" r="28" fill="#fff"/>
+    <circle cx="700" cy="125" r="20" fill="#6ec6ff"/>
+    <circle cx="693" cy="118" r="7" fill="#fff" opacity="0.85"/>
+  </g>
+</svg>

@@ -1,91 +1,211 @@
-# Welcome to Your Miaoda Project
+# 🚀 TwinX Labs Website
 
-## Project Info
+<p align="center">
+  <img src="https://i.ibb.co/jkmHpKGb/twinxlabs-logo.jpg" alt="TwinX Labs Logo" width="200"/>
+</p>
 
-## Project Directory
+<h3 align="center">
+Empowering Young Minds Through Coding, Creativity & AI
+</h3>
+
+<p align="center">
+TwinX Labs is a <strong>twin-led Creative-Tech platform</strong> dedicated to teaching children future-ready digital skills through engaging, live, and budget-friendly online classes.
+</p>
+
+---
+
+## 🌟 About TwinX Labs
+
+TwinX Labs helps young creators develop practical technology skills in a fun and interactive learning environment.
+
+Our mission is to make high-quality tech education accessible, engaging, and affordable for children by combining creativity with modern technology.
+
+Students learn through live online classes, hands-on projects, interactive activities, and real-world challenges.
+
+---
+
+## ✨ Courses Offered
+
+- 🤖 AI Tools & Creative Technology
+- 💻 Scratch Coding
+- 🎨 Canva Designing
+- 🎬 Video Editing
+- 📱 Content Creation
+- 🐍 Python Programming
+- 🌐 HTML & CSS
+- ⚙️ C++ Programming
+
+---
+
+## 🎯 Why TwinX Labs?
+
+- 👨‍🏫 Live Interactive Online Classes
+- 💰 Budget-Friendly Learning
+- 🎓 Beginner-Friendly Curriculum
+- 🚀 Project-Based Learning
+- 🧠 Creative Thinking Activities
+- 🤖 Latest AI Tools
+- 📜 Certificate of Completion
+- 💬 Small Batch Learning
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+
+### UI
+
+- Radix UI
+- Lucide React
+- Iconify
+- ShadCN UI
+
+### Forms & Validation
+
+- React Hook Form
+
+### Backend (Planned)
+
+- Google Apps Script
+- Google Sheets API
+- Email Notifications
+
+---
+
+## 📸 Website Sections
+
+- 🏠 Hero
+- 👨‍💻 About Us
+- 📚 Courses
+- ⭐ Why Choose Us
+- 💬 Testimonials
+- ❓ FAQ
+- 📞 Contact
+- 📍 Footer
+
+---
+
+## 🚀 Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/HamzaZaidiX/TwinX-Labs-Website.git
+```
+
+### Navigate into the project
+
+```bash
+cd TwinX-Labs-Website
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Start development server
+
+```bash
+npm run dev
+```
+
+---
+
+## 📂 Project Structure
 
 ```
-├── README.md # Documentation
-├── components.json # Component library configuration
-├── index.html # Entry file
-├── package.json # Package management
-├── postcss.config.js # PostCSS configuration
-├── public # Static resources directory
-│   ├── favicon.png # Icon
-│   └── images # Image resources
-├── src # Source code directory
-│   ├── App.tsx # Entry file
-│   ├── components # Components directory
-│   ├── context # Context directory
-│   ├── db # Database configuration directory
-│   ├── hooks # Common hooks directory
-│   ├── index.css # Global styles
-│   ├── layout # Layout directory
-│   ├── lib # Utility library directory
-│   ├── main.tsx # Entry file
-│   ├── routes.tsx # Routing configuration
-│   ├── pages # Pages directory
-│   ├── services # Database interaction directory
-│   ├── types # Type definitions directory
-├── tsconfig.app.json # TypeScript frontend configuration file
-├── tsconfig.json # TypeScript configuration file
-├── tsconfig.node.json # TypeScript Node.js configuration file
-└── vite.config.ts # Vite configuration file
+src/
+│
+├── assets/
+├── components/
+├── contexts/
+├── hooks/
+├── layouts/
+├── pages/
+├── routes/
+├── sections/
+├── styles/
+└── utils/
 ```
 
-## Tech Stack
+---
 
-Vite, TypeScript, React, Supabase
+## 🎨 Features
 
-## Development Guidelines
+- ⚡ Fast Performance with Vite
+- 📱 Fully Responsive Design
+- 🌙 Dark Mode Support
+- ✨ Smooth Animations
+- 🎠 Interactive Course Carousel
+- 📧 Contact Form Integration
+- 🎯 SEO Friendly
+- ♿ Accessible UI Components
 
-### How to edit code locally?
+---
 
-You can choose [VSCode](https://code.visualstudio.com/Download) or any IDE you prefer. The only requirement is to have Node.js and npm installed.
+## 📌 Future Improvements
 
-### Environment Requirements
+- Student Dashboard
+- Online Course Enrollment
+- Parent Portal
+- AI Chat Assistant
+- Learning Progress Tracker
+- Blog & Resources
 
-```
-# Node.js ≥ 20
-# npm ≥ 10
-Example:
-# node -v   # v20.18.3
-# npm -v    # 10.8.2
-```
+---
 
-### Installing Node.js on Windows
+## 🤝 Contributing
 
-```
-# Step 1: Visit the Node.js official website: https://nodejs.org/, click download. The website will automatically suggest a suitable version (32-bit or 64-bit) for your system.
-# Step 2: Run the installer: Double-click the downloaded installer to run it.
-# Step 3: Complete the installation: Follow the installation wizard to complete the process.
-# Step 4: Verify installation: Open Command Prompt (cmd) or your IDE terminal, and type `node -v` and `npm -v` to check if Node.js and npm are installed correctly.
-```
+Contributions, suggestions, and improvements are always welcome.
 
-### Installing Node.js on macOS
+If you'd like to contribute:
 
-```
-# Step 1: Using Homebrew (Recommended method): Open Terminal. Type the command `brew install node` and press Enter. If Homebrew is not installed, you need to install it first by running the following command in Terminal:
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-Alternatively, use the official installer: Visit the Node.js official website. Download the macOS .pkg installer. Open the downloaded .pkg file and follow the prompts to complete the installation.
-# Step 2: Verify installation: Open Command Prompt (cmd) or your IDE terminal, and type `node -v` and `npm -v` to check if Node.js and npm are installed correctly.
-```
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
 
-### After installation, follow these steps:
+---
 
-```
-# Step 1: Download the code package
-# Step 2: Extract the code package
-# Step 3: Open the code package with your IDE and navigate into the code directory
-# Step 4: In the IDE terminal, run the command to install dependencies: npm i
-# Step 5: In the IDE terminal, run the command to start the development server: npm run dev -- --host 127.0.0.1
-# Step 6: if step 5 failed, try this command to start the development server: npx vite --host 127.0.0.1
-```
+## 📧 Contact
 
-### How to develop backend services?
+**TwinX Labs**
 
-Configure environment variables and install relevant dependencies.If you need to use a database, please use the official version of Supabase.
+🌐 Website: *(Coming Soon)*
 
-## Learn More
+📧 Email: [Email](mailto:team.twinxlabs@gmail.com)
 
-You can also check the help documentation: Download and Building the app（ [https://intl.cloud.baidu.com/en/doc/MIAODA/s/download-and-building-the-app-en](https://intl.cloud.baidu.com/en/doc/MIAODA/s/download-and-building-the-app-en)）to learn more detailed content.
+📱 Instagram: [Instagram](https://www.instagram.com/the.twinxlabs)
+
+📱 Facebook: [Facebook](https://www.facebook.com/TwinXLabs)
+
+📱 YouTube: [YouTube](https://www.youtube.com/channel/UCSOB-3tQDdv10kVF7lgjtUQ)
+
+---
+
+## ⭐ Support
+
+If you found this project helpful, consider giving it a ⭐ on GitHub.
+
+It helps support the project and motivates future development.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+<p align="center">
+Made with ❤️ by the TwinX Labs Team
+</p>

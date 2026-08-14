@@ -78,7 +78,7 @@ const BENEFITS = [
 const WORKSHOPS = [
   {
     id: 1,
-    imageUrl: 'https://i.ibb.co/9HcBy6S7/vc-RHHP.jpg',
+    imageUrl: 'https://i.ibb.co/7NV8fj04/scratch-certificate.jpg',
     title: 'Our Star Shines! Certificates Awarded',
     caption: 'Our Star Shines! Certificates Awarded to Successful Students',
     },

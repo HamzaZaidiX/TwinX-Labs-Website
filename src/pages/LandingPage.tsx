@@ -37,6 +37,8 @@ import {
 } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
 import { COURSES } from '@/data/courses';
+import { TestimonialsSection } from '@/pages/TestimonialsSection';
+import { TEMP_OPTIONS, isTempOptionDisabled } from '@/data/tempOptions';
 
 // const LOGO_URL = 'https://i.ibb.co/jkmHpKGb/twinxlabs-logo.jpg';
 
@@ -73,42 +75,42 @@ const BENEFITS = [
   },
 ];
 
-const GALLERY = [
+const WORKSHOPS = [
   {
     id: 1,
-    imageUrl: 'https://i.ibb.co/Z1NqJWyW/738625661-122193199760387502-102215859285672880-n.jpg',
-    title: 'Parent Testimonials',
-    caption: 'A Happy parent sharing their experience with TwinX Labs',
-  },
+    imageUrl: 'https://i.ibb.co/9HcBy6S7/vc-RHHP.jpg',
+    title: 'Our Star Shines! Certificates Awarded',
+    caption: 'Our Star Shines! Certificates Awarded to Successful Students',
+    },
   {
     id: 2,
-    imageUrl: 'https://i.ibb.co/qFk45mHf/735193493-18081268934266038-7661399166291001439-n.jpg',
-    title: 'AI Tools Course',
-    caption: '',
+    imageUrl: 'https://i.ibb.co/vvDyN0cm/c-Jlgz-G.jpg',
+    title: 'Another Star Shines! Certificates Awarded',
+    caption: 'Another Star Shines! Certificates Awarded to Successful Students',
   },
   {
     id: 3,
-    imageUrl: 'https://i.ibb.co/5Wbws28x/731808189-18081268982266038-46031712163193404-n.jpg',
-    title: 'Scratch Journey',
-    caption: '',
+    imageUrl: 'https://i.ibb.co/fc8t8kB/Tmrri-C.jpg',
+    title: 'A Glimpse of our Online Class',
+    caption: 'A Glimpse of our Online Class',
   },
   {
     id: 4,
-    imageUrl: 'https://i.ibb.co/FbyxcZyr/testimonial.jpg',
-    title: 'Parent Testimonial',
-    caption: 'A Happy parent sharing their experience with TwinX Labs',
+    imageUrl: 'https://i.ibb.co/9mBXBVYh/Zy-Om-Th.jpg',
+    title: 'Sneak Peek of Our Gorgeous Certificates Awarded',
+    caption: 'Sneak Peek of Our Gorgeous Certificates Awarded',
   },
   {
     id: 5,
-    imageUrl: 'https://i.ibb.co/0px0nSm9/735117913-18081268955266038-2462426275723554237-n.jpg',
-    title: 'Content Creation Course',
-    caption: '',
+    imageUrl: 'https://i.ibb.co/jZLS99dM/lfa-BLA.jpg',
+    title: 'A Glimpse of our Online Class',
+    caption: 'A Glimpse of our Online Class',
   },
   {
     id: 6,
-    imageUrl: 'https://i.ibb.co/n88FQQjL/732544804-18081268925266038-4088103636851712932-n.jpg',
-    title: 'Summer Camp',
-    caption: '',
+    imageUrl: 'https://i.ibb.co/rKQHSJVm/ESXYRo.jpg',
+    title: 'Our Star Batch 1-26 Wrap-Up',
+    caption: 'Our Star Batch 1-26 Wrap-Up',
   },
 ];
 
@@ -168,7 +170,8 @@ const SOCIAL_LINKS = [
 const SECTIONS = [
   { id: 'courses', label: 'Courses' },
   { id: 'why-join', label: 'Why Join' },
-  { id: 'gallery', label: 'Gallery' },
+  { id: 'testimonials', label: 'Testimonials' },
+  { id: 'workshops', label: 'Workshops' },
   { id: 'services', label: 'Services' },
   { id: 'contact', label: 'Contact' },
 ];
@@ -226,8 +229,8 @@ const LandingPage: React.FC = () => {
     if (selectedImage === null) return;
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setSelectedImage(null);
-      if (e.key === 'ArrowLeft') setSelectedImage((prev) => (prev === null ? null : (prev - 1 + GALLERY.length) % GALLERY.length));
-      if (e.key === 'ArrowRight') setSelectedImage((prev) => (prev === null ? null : (prev + 1) % GALLERY.length));
+      if (e.key === 'ArrowLeft') setSelectedImage((prev) => (prev === null ? null : (prev - 1 + WORKSHOPS.length) % WORKSHOPS.length));
+      if (e.key === 'ArrowRight') setSelectedImage((prev) => (prev === null ? null : (prev + 1) % WORKSHOPS.length));
     };
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKey);
@@ -240,17 +243,19 @@ const LandingPage: React.FC = () => {
 
   const coursesRef = useRef<HTMLElement>(null);
   const whyJoinRef = useRef<HTMLElement>(null);
-  const galleryRef = useRef<HTMLElement>(null);
+  const workshopRef = useRef<HTMLElement>(null);
   const servicesRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
+  const testimonialsRef = useRef<HTMLElement>(null);
 
   const scrollToSection = (id: string) => {
     const refs: Record<string, React.RefObject<HTMLElement | null>> = {
       courses: coursesRef,
       'why-join': whyJoinRef,
-      gallery: galleryRef,
+      workshop: workshopRef,
       services: servicesRef,
       contact: contactRef,
+      testimonials: testimonialsRef,
     };
     refs[id]?.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -332,18 +337,18 @@ const LandingPage: React.FC = () => {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="h-24 md:h-32 w-auto drop-shadow-lg"
+        className="w-auto h-24 md:h-32 drop-shadow-lg"
       />
     </Link>
   </div>
 
   <div className="absolute inset-0 opacity-40">
     <div className="absolute top-1/3 right-1/4 w-[420px] h-[420px] bg-blue-500 rounded-full blur-[100px]" />
-    <div className="absolute bottom-10 right-10 w-72 h-72 bg-purple-600 rounded-full blur-3xl" />
-    <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-pink-500 rounded-full blur-3xl" />
+    <div className="absolute bg-purple-600 rounded-full bottom-10 right-10 w-72 h-72 blur-3xl" />
+    <div className="absolute bottom-0 w-64 h-64 bg-pink-500 rounded-full right-1/4 blur-3xl" />
   </div>
 
-  <div className="relative container mx-auto px-4 md:px-8 pt-8 pb-16 md:pt-12 md:pb-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+  <div className="container relative grid items-center grid-cols-1 gap-12 px-4 pt-8 pb-16 mx-auto md:px-8 md:pt-12 md:pb-24 lg:grid-cols-2">
 
     {/* LEFT: Text content */}
     <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
@@ -351,7 +356,7 @@ const LandingPage: React.FC = () => {
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6, delay: 0.3 }}
-  className="text-3xl md:text-5xl font-bold text-white tracking-tight text-balance"
+  className="text-3xl font-bold tracking-tight text-white md:text-5xl text-balance"
 >
   Learn and Grow
 
@@ -384,22 +389,22 @@ const LandingPage: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="mt-6 text-base md:text-lg text-white/70 max-w-xl text-pretty leading-relaxed"
+        className="max-w-xl mt-6 text-base leading-relaxed md:text-lg text-white/70 text-pretty transition-colors"
       >
-        TwinX Labs is a twin-led creative-tech platform teaching coding, design,
-        video editing and AI tools — through live, budget-friendly online classes
-        built for young creators.
+        🚀 TwinX Labs is a twin-led creative-tech platform helping young creators learn code, build something innovative for the future, and turn ideas into reality through live, affordable classes in coding 💻, design 🎨, AI & digital skills. 🤖
+<br/>
+✨ Need something custom? We also provide tailored digital solutions and creative-tech services built around your unique needs.
       </motion.p>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.7 }}
-        className="mt-8 flex flex-col sm:flex-row gap-4"
+        className="flex flex-col gap-4 mt-8 sm:flex-row"
       >
         <Button
           size="lg"
-          className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white hover:opacity-90 rounded-full px-8 h-12 text-base font-semibold shadow-lg shadow-purple-500/25"
+          className="h-12 px-8 text-base font-semibold text-white rounded-full shadow-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90 shadow-purple-500/25"
           onClick={() => scrollToSection('courses')}
         >
           Enroll Now <ArrowRight className="w-5 h-5 ml-2" />
@@ -476,64 +481,63 @@ const LandingPage: React.FC = () => {
   >
     <button
       onClick={() => scrollToSection('courses')}
-      className="animate-bounce text-white/60 hover:text-white transition-colors"
+      className="transition-colors animate-bounce text-white/60 hover:text-white"
     >
       <ChevronDown className="w-8 h-8" />
     </button>
   </motion.div>
 </section>
       {/* Social Links Section */}
-      <section className="w-full py-8 bg-primary/[0.03] border-y border-border">
-        <div className="container mx-auto px-4 md:px-8 items-center text-center justify-center">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-pink-300 text-purple-600 text-sm font-semibold mb-4">
-              Connect With Us
-            </span>
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="flex flex-wrap justify-center items-center gap-6 md:gap-10"
-          >
-            {SOCIAL_LINKS.map((social) => (
-              <motion.a
-                key={social.label}
-                variants={fadeInUp}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group cursor-pointer"
-              >
-                <span className="p-2.5 rounded-full bg-background border border-border group-hover:border-primary/30 group-hover:shadow-md transition-all duration-300 hover:text-blue-500 hover:scale-110 cursor-pointer">
-                  {social.icon}
-                </span>
-              </motion.a>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
+<section className="w-full py-8 bg-primary/[0.03] border-y border-border">
+  <div className="container flex flex-col items-center px-4 mx-auto text-center md:px-8">
+    <span className="inline-block px-4 py-1.5 rounded-full bg-pink-300 text-purple-600 text-sm font-semibold mb-4">
+      Connect With Us
+    </span>
+    <motion.div
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="flex items-center justify-center gap-3 flex-nowrap sm:gap-6 md:gap-10"
+    >
+      {SOCIAL_LINKS.map((social) => (
+        <motion.a
+          key={social.label}
+          variants={fadeInUp}
+          href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 transition-colors cursor-pointer text-muted-foreground hover:text-foreground group shrink-0"
+        >
+          <span className="flex items-center justify-center p-1.5 sm:p-2.5 rounded-full bg-background border border-border group-hover:border-primary/30 group-hover:shadow-md transition-all duration-300 hover:text-blue-500 hover:scale-110 hover:animate-bounce cursor-pointer">
+            {social.icon}
+          </span>
+        </motion.a>
+      ))}
+    </motion.div>
+  </div>
+</section>
       <CoursesSection
   coursesRef={coursesRef}
   onEnroll={(_course) => scrollToSection('contact')}
 />
       {/* Why Join Section */}
       <section ref={whyJoinRef} id="why-join" className="w-full py-16 md:py-24 bg-gradient-to-b from-[#f8f9fc] to-white">
-        <div className="container mx-auto px-4 md:px-8">
+        <div className="container px-4 mx-auto md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-50 text-cyan-600 dark:bg-pink-300 dark:text-purple-600 text-sm font-semibold mb-4">
               Why TwinX Labs
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold dark:text-indigo-500 tracking-tight text-balance">
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl dark:text-indigo-500 text-balance">
               Why Parents & Students Trust Us
             </h2>
-            <p className="mt-4 dark:text-black max-w-2xl mx-auto text-pretty">
+            <p className="max-w-2xl mx-auto mt-4 dark:text-black text-pretty">
               We combine structured learning with creative freedom to help every child discover their potential.
             </p>
           </motion.div>
@@ -543,18 +547,18 @@ const LandingPage: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             {BENEFITS.map((benefit, idx) => (
               <motion.div key={idx} variants={fadeInUp} whileHover={{ y: -8 }}
               transition={{ type: 'spring', stiffness: 300, damping: 22 }} className=''>
-                <Card className="h-full hover:shadow-hover transition-all duration-300 border-border/60 shadow-md backdrop-blur-xl transition-shadow duration-300 hover:shadow-2xl">
-                  <CardContent className="p-6 items-center">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-100 to-purple-100 flex items-center justify-center text-foreground mb-4 justify-center">
+                <Card className="h-full transition-all transition-shadow duration-300 shadow-md hover:shadow-hover border-border/60 backdrop-blur-xl hover:shadow-2xl">
+                  <CardContent className="items-center p-6">
+                    <div className="flex items-center justify-center w-12 h-12 mb-4 rounded-xl bg-gradient-to-br from-cyan-100 to-purple-100 text-foreground">
                       {benefit.icon}
                     </div>
-                    <h3 className="text-lg font-bold text-foreground mb-2">{benefit.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed text-pretty">
+                    <h3 className="mb-2 text-lg font-bold text-foreground">{benefit.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
                       {benefit.description}
                     </p>
                   </CardContent>
@@ -565,24 +569,26 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
+      <TestimonialsSection testimonialsRef={testimonialsRef} />
+
 {/* Gallery Section */}
-<section ref={galleryRef} id="gallery" className="w-full py-16 md:py-24">
-  <div className="container mx-auto px-4 md:px-8">
+<section ref={workshopRef} id="workshops" className="w-full py-16 md:py-24">
+  <div className="container px-4 mx-auto md:px-8">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="text-center mb-12"
+      className="mb-12 text-center"
     >
       <span className="inline-block px-4 py-1.5 rounded-full bg-pink-50 text-pink-600 text-sm font-semibold mb-4">
-        Gallery
+        Workshops
       </span>
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight text-balance">
-        Workshops & Testimonials
+      <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-foreground text-balance">
+        Our Workshop Highlights
       </h2>
-      <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-pretty">
-        Highlights from our exciting camps, courses, and parent testimonials.
+      <p className="max-w-2xl mx-auto mt-4 text-muted-foreground text-pretty">
+        Highlights from our exciting camps, courses, and workshops.
       </p>
     </motion.div>
 
@@ -591,37 +597,37 @@ const LandingPage: React.FC = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
+      className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6"
     >
-      {GALLERY.slice(0, visibleCount).map((item, index) => (
+      {WORKSHOPS.slice(0, visibleCount).map((item, index) => (
         <motion.button
           key={item.id}
           type="button"
           variants={fadeInUp}
           onClick={() => setSelectedImage(index)}
-          className="group relative aspect-square overflow-hidden rounded-2xl shadow-lg cursor-pointer"
+          className="relative overflow-hidden shadow-lg cursor-pointer group aspect-square rounded-2xl"
         >
           <img
             src={item.imageUrl}
             alt={item.title}
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="absolute inset-0 object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
           />
           {/* gradient overlay + caption on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-            <h3 className="text-white font-bold text-sm md:text-base text-left">{item.title}</h3>
-            <p className="text-white/80 text-xs md:text-sm text-left">{item.caption}</p>
+          <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent group-hover:opacity-100" />
+          <div className="absolute bottom-0 left-0 right-0 p-4 transition-all duration-300 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+            <h3 className="text-sm font-bold text-left text-white md:text-base">{item.title}</h3>
+            <p className="text-xs text-left text-white/80 md:text-sm">{item.caption}</p>
           </div>
           {/* zoom hint icon */}
-          <div className="absolute top-3 right-3 h-8 w-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute flex items-center justify-center w-8 h-8 transition-opacity duration-300 rounded-full opacity-0 top-3 right-3 bg-white/20 backdrop-blur-sm group-hover:opacity-100">
             <Expand className="w-4 h-4 text-white" />
           </div>
         </motion.button>
       ))}
     </motion.div>
 
-    {visibleCount < GALLERY.length && (
+    {visibleCount < WORKSHOPS.length && (
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -632,7 +638,7 @@ const LandingPage: React.FC = () => {
         <Button
           onClick={() => setVisibleCount((prev) => prev + 6)}
           variant="outline"
-          className="rounded-full px-8 h-11 font-semibold border-2 hover:border-purple-400/50 hover:bg-purple-50 dark:hover:bg-purple-950/20 transition-colors"
+          className="px-8 font-semibold transition-colors border-2 rounded-full h-11 hover:border-purple-400/50 hover:bg-purple-50 dark:hover:bg-purple-950/20"
         >
           Load More <ChevronDown className="w-4 h-4 ml-2" />
         </Button>
@@ -655,7 +661,7 @@ const LandingPage: React.FC = () => {
           type="button"
           onClick={() => setSelectedImage(null)}
           aria-label="Close"
-          className="absolute top-4 right-4 md:top-6 md:right-6 z-10 h-11 w-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          className="absolute z-10 flex items-center justify-center text-white transition-colors rounded-full top-4 right-4 md:top-6 md:right-6 h-11 w-11 bg-white/10 hover:bg-white/20"
         >
           <X className="w-6 h-6" />
         </button>
@@ -668,7 +674,7 @@ const LandingPage: React.FC = () => {
             setSelectedImage((prev) => (prev === null ? null : (prev - 1 + visibleCount) % visibleCount));
           }}
           aria-label="Previous image"
-          className="absolute left-2 md:left-6 z-10 h-11 w-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          className="absolute z-10 flex items-center justify-center text-white transition-colors rounded-full left-2 md:left-6 h-11 w-11 bg-white/10 hover:bg-white/20"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
@@ -681,7 +687,7 @@ const LandingPage: React.FC = () => {
             setSelectedImage((prev) => (prev === null ? null : (prev + 1) % visibleCount));
           }}
           aria-label="Next image"
-          className="absolute right-2 md:right-6 z-10 h-11 w-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+          className="absolute z-10 flex items-center justify-center text-white transition-colors rounded-full right-2 md:right-6 h-11 w-11 bg-white/10 hover:bg-white/20"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
@@ -696,13 +702,13 @@ const LandingPage: React.FC = () => {
           className="max-w-4xl max-h-[85vh] w-full flex flex-col items-center"
         >
           <img
-            src={GALLERY[selectedImage].imageUrl}
-            alt={GALLERY[selectedImage].title}
+            src={WORKSHOPS[selectedImage].imageUrl}
+            alt={WORKSHOPS[selectedImage].title}
             className="max-h-[75vh] w-auto max-w-full object-contain rounded-lg shadow-2xl"
           />
           <div className="mt-4 text-center">
-            <h3 className="text-white font-bold text-lg">{GALLERY[selectedImage].title}</h3>
-            <p className="text-white/70 text-sm mt-1">{GALLERY[selectedImage].caption}</p>
+            <h3 className="text-lg font-bold text-white">{WORKSHOPS[selectedImage].title}</h3>
+            <p className="mt-1 text-sm text-white/70">{WORKSHOPS[selectedImage].caption}</p>
           </div>
         </motion.div>
       </motion.div>
@@ -712,18 +718,18 @@ const LandingPage: React.FC = () => {
 
       {/* Services Section */}
 <section ref={servicesRef} id="services" className="w-full py-16 md:py-24 bg-gradient-to-b from-[#f8f9fc] to-white">
-  <div className="container mx-auto px-4 md:px-8">
+  <div className="container px-4 mx-auto md:px-8">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="text-center max-w-2xl mx-auto"
+      className="max-w-2xl mx-auto text-center"
     >
       <span className="inline-block px-4 py-1.5 rounded-full bg-pink-300 text-purple-600 text-sm font-semibold mb-4">
         Services
       </span>
-      <h2 className="text-3xl md:text-4xl font-bold dark:text-indigo-500 tracking-tight text-balance">
+      <h2 className="text-3xl font-bold tracking-tight md:text-4xl dark:text-indigo-500 text-balance">
         Need Something Custom? We&apos;ve Got You.
       </h2>
       <p className="mt-4 text-muted-foreground dark:text-black text-pretty">
@@ -737,20 +743,20 @@ const LandingPage: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
+        className="flex flex-col items-center justify-center gap-4 mt-8 sm:flex-row"
       >
         
          <a href="https://wa.me/923373794682?text=Hi%2C%20I%27d%20like%20a%20quote%20for%20a%20custom%20project."
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-8 rounded-full font-semibold text-white bg-gradient-to-r from-emerald-500 to-green-600 hover:opacity-90 transition-opacity shadow-lg shadow-green-500/25"
+          className="inline-flex items-center justify-center w-full h-12 gap-2 px-8 font-semibold text-white transition-opacity rounded-full shadow-lg sm:w-auto bg-gradient-to-r from-emerald-500 to-green-600 hover:opacity-90 shadow-green-500/25"
         >
           <MessageCircle className="w-5 h-5" />
           Get a Quote on WhatsApp
         </a>
         
           <a href="mailto:team.twinxlabs@gmail.com?subject=Quote%20Request&body=Hi%20TwinX%20Labs%2C%20I%27d%20like%20a%20quote%20for..."
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-8 rounded-full font-semibold text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90 transition-opacity shadow-lg shadow-purple-500/25"
+          className="inline-flex items-center justify-center w-full h-12 gap-2 px-8 font-semibold text-white transition-opacity rounded-full shadow-lg sm:w-auto bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90 shadow-purple-500/25"
         >
           <Mail className="w-5 h-5" />
           Email Us for a Quote
@@ -762,21 +768,21 @@ const LandingPage: React.FC = () => {
 
 {/* Contact Form Section */}
 <section ref={contactRef} id="contact" className="w-full py-16 md:py-24">
-  <div className="container mx-auto px-4 md:px-8">
+  <div className="container px-4 mx-auto md:px-8">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="text-center mb-12"
+      className="mb-12 text-center"
     >
       <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-sm font-semibold mb-4">
         Enroll Now
       </span>
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight text-balance">
+      <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-foreground text-balance">
         Start Your Child&apos;s Journey Today
       </h2>
-      <p className="mt-4 text-muted-foreground max-w-2xl mx-auto text-pretty">
+      <p className="max-w-2xl mx-auto mt-4 text-muted-foreground text-pretty">
         Fill out the form below and our team will reach out with the perfect course recommendation.
       </p>
     </motion.div>
@@ -791,7 +797,7 @@ const LandingPage: React.FC = () => {
   <motion.div
     whileHover={{ scale: 1.015 }}
     transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-    className="group relative"
+    className="relative group"
   >
     {/* neon gradient glow — sits behind the card, blooms in on hover */}
     <div
@@ -801,10 +807,10 @@ const LandingPage: React.FC = () => {
       }}
     />
 
-    <Card className="relative border-border/60 shadow-card group-hover:shadow-2xl group-hover:border-transparent transition-all duration-300 bg-card">
+    <Card className="relative transition-all duration-300 border-border/60 shadow-card group-hover:shadow-2xl group-hover:border-transparent bg-card">
       <CardContent className="p-6 md:p-8">
         <form className="space-y-5" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium">
                   Student's Name <span className="text-destructive">*</span>
@@ -839,13 +845,13 @@ const LandingPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               <div className="space-y-2">
                 <Label htmlFor="city_country" className="text-sm font-medium">
                   City & Country <span className="text-destructive">*</span>
                 </Label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <MapPin className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-muted-foreground" />
                   <Input
                     id="city_country"
                     placeholder="e.g. New York, USA"
@@ -864,43 +870,54 @@ const LandingPage: React.FC = () => {
                   Phone Number
                 </Label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Phone className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-muted-foreground" />
                   <Input
                     id="phone"
                     type="tel"
                     placeholder="Enter phone number"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="h-11 pl-10"
+                    className="pl-10 h-11"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div className="space-y-2">
-                <Label htmlFor="course_selection" className="text-sm font-medium">
-                  Course Selection <span className="text-destructive">*</span>
-                </Label>
-                <Select
-                  value={formData.course_selection}
-                  onValueChange={(value) => setFormData({ ...formData, course_selection: value })}
-                >
-                  <SelectTrigger className={`h-11 ${errors.course_selection ? 'border-destructive' : ''}`}>
-                    <SelectValue placeholder="Select a course" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {COURSES.map((course) => (
-                      <SelectItem key={course.id} value={course.title}>
-                        {course.title}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {errors.course_selection && (
-                  <p className="text-xs text-destructive">{errors.course_selection}</p>
-                )}
-              </div>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              
+<div className="space-y-2">
+  <Label htmlFor="course_selection" className="text-sm font-medium">
+    Course Selection <span className="text-destructive">*</span>
+  </Label>
+  <Select
+    value={formData.course_selection}
+    onValueChange={(value) => setFormData({ ...formData, course_selection: value })}
+  >
+    <SelectTrigger className={`h-11 ${errors.course_selection ? 'border-destructive' : ''}`}>
+      <SelectValue placeholder="Select a course" />
+    </SelectTrigger>
+    <SelectContent>
+      {COURSES.map((course) => (
+        <SelectItem key={course.id} value={course.title}>
+          {course.title}
+        </SelectItem>
+      ))}
+
+      {TEMP_OPTIONS.map((option) => {
+        const disabled = isTempOptionDisabled(option);
+        return (
+          <SelectItem key={option.id} value={option.title} disabled={disabled}>
+            {option.title}
+            {disabled ? ' (Enrollments Closed)' : ''}
+          </SelectItem>
+        );
+      })}
+    </SelectContent>
+  </Select>
+  {errors.course_selection && (
+    <p className="text-xs text-destructive">{errors.course_selection}</p>
+  )}
+</div>
 
               <div className="space-y-2">
                 <Label htmlFor="age" className="text-sm font-medium">
@@ -1013,11 +1030,11 @@ const LandingPage: React.FC = () => {
             <Button
   type="submit"
   disabled={submitting}
-  className="w-full h-12 bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:opacity-90 rounded-full font-semibold text-base shadow-lg shadow-cyan-500/25"
+  className="w-full h-12 text-base font-semibold text-white rounded-full shadow-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-90 shadow-cyan-500/25"
 >
   {submitting ? (
     <span className="flex items-center gap-2">
-      <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+      <span className="w-4 h-4 border-2 rounded-full border-white/30 border-t-white animate-spin" />
       Submitting...
     </span>
   ) : (
@@ -1035,7 +1052,7 @@ const LandingPage: React.FC = () => {
     className="flex items-start gap-2.5 p-4 rounded-xl border-emerald-200 border-emerald-200"
   >
     <MessageCircle className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
-    <p className="text-sm text-emerald-700 leading-relaxed">
+    <p className="text-sm leading-relaxed text-emerald-700">
       For confirmation of enrollment in your course, kindly message us on WhatsApp at{' '}
       
         <a href="https://api.whatsapp.com/send?phone=923373794682&app=facebook&entry_point=page_cta&fbclid=IwY2xjawFfi9gBHUhVHIUy2pIkHelXuOqxRbDCgRi-MgHY7s7Ca9QM4aTeZvJRiN2J9FbU5Q"
@@ -1057,92 +1074,82 @@ const LandingPage: React.FC = () => {
 
     
     {/* Contact Info */}
-<div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-  {/* Email + Phone card */}
-  <div className="group flex flex-col gap-0 p-5 rounded-2xl bg-muted/50 border border-border/60 hover:border-cyan-400/40 hover:shadow-md transition-all duration-300">
+{/* Contact Info */}
+<div className="max-w-xl mx-auto mt-8">
+  <div className="group flex flex-col p-5 sm:p-6 rounded-2xl bg-muted/50 border border-border/60 hover:border-purple-400/40 hover:shadow-md transition-all duration-300">
+
+    {/* Email */}
     <button
       type="button"
       onClick={() => copyToClipboard('team.twinxlabs@gmail.com', 'Email')}
-      className="group/copy flex items-center gap-4 text-left py-1 hover:opacity-80 transition-opacity"
+      className="group/copy flex items-center gap-4 py-2 text-left hover:opacity-80 transition-opacity"
     >
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 group-hover:bg-cyan-500/15 transition-colors">
+      <div className="flex items-center justify-center h-11 w-11 shrink-0 rounded-xl bg-cyan-500/10 group-hover:bg-cyan-500/15 transition-colors">
         <Mail className="w-5 h-5 text-cyan-500" />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <p className="text-sm font-semibold text-foreground">Email</p>
-        <p className="text-xs text-muted-foreground mt-0.5">team.twinxlabs@gmail.com</p>
+        <p className="text-xs text-muted-foreground mt-0.5 truncate">team.twinxlabs@gmail.com</p>
       </div>
       <Copy className="w-4 h-4 text-muted-foreground/50 group-hover/copy:text-foreground shrink-0" />
     </button>
 
-    {/* divider */}
-    <div className="my-4 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+    <div className="h-px my-3 bg-gradient-to-r from-transparent via-border to-transparent" />
 
+    {/* Phone / WhatsApp */}
     <button
       type="button"
       onClick={() => copyToClipboard('+923373794682', 'Phone number')}
-      className="group/copy flex items-center gap-4 text-left py-1 hover:opacity-80 transition-opacity"
+      className="group/copy flex items-center gap-4 py-2 text-left hover:opacity-80 transition-opacity"
     >
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-500/10 group-hover:bg-purple-500/15 transition-colors">
+      <div className="flex items-center justify-center h-11 w-11 shrink-0 rounded-xl bg-purple-500/10 group-hover:bg-purple-500/15 transition-colors">
         <Phone className="w-5 h-5 text-purple-500" />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <p className="text-sm font-semibold text-foreground">Phone / WhatsApp</p>
         <p className="text-xs text-muted-foreground mt-0.5">+92 337 3794682</p>
       </div>
       <Copy className="w-4 h-4 text-muted-foreground/50 group-hover/copy:text-foreground shrink-0" />
     </button>
-  </div>
-  {/* Bank account card */}
-<div className="group flex items-start gap-4 p-5 rounded-2xl bg-muted/50 border border-border/60 hover:border-pink-400/40 hover:shadow-md transition-all duration-300">
-  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-pink-500/10 group-hover:bg-pink-500/15 transition-colors">
-    <Landmark className="w-5 h-5 text-pink-500" />
-  </div>
-  <div className="flex-1">
-    <p className="text-sm font-semibold text-foreground">Bank Account Details</p>
-    <p className="text-xs text-muted-foreground font-semibold mt-1">Syeda Mariam Jaffar — Faysal Bank</p>
 
+    <div className="h-px my-3 bg-gradient-to-r from-transparent via-border to-transparent" />
+
+    {/* Payment Details */}
     <button
       type="button"
-      onClick={() => copyToClipboard('PK23FAYS3007301000006891', 'IBAN')}
-      className="group/copy inline-flex items-center gap-1.5 mt-2 hover:text-foreground transition-colors"
+      onClick={() => copyToClipboard('+923373794682', 'WhatsApp Number')}
+      className="group/copy flex items-center gap-4 py-2 text-left hover:opacity-80 transition-opacity"
     >
-      <span className="text-xs text-muted-foreground">
-        IBAN: <span className="font-medium text-foreground/80">PK23FAYS3007301000006891</span>
-      </span>
-      <Copy className="w-3.5 h-3.5 text-muted-foreground/50 group-hover/copy:text-foreground shrink-0" />
+      <div className="flex items-center justify-center h-11 w-11 shrink-0 rounded-xl bg-pink-500/10 group-hover:bg-pink-500/15 transition-colors">
+        <Landmark className="w-5 h-5 text-pink-500" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-semibold text-foreground">Payment Details</p>
+        <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+          Contact <span className="font-medium text-foreground/80">+92 337 3794682</span> for EasyPaisa, JazzCash or Bank Transfer
+        </p>
+      </div>
+      <Copy className="w-4 h-4 text-muted-foreground/50 group-hover/copy:text-foreground shrink-0" />
     </button>
 
-    <button
-      type="button"
-      onClick={() => copyToClipboard('30073010000006891', 'Account number')}
-      className="group/copy flex items-center gap-1.5 mt-1.5 hover:text-foreground transition-colors"
-    >
-      <span className="text-xs text-muted-foreground">
-        Account No: <span className="font-medium text-foreground/80">30073010000006891</span>
-      </span>
-      <Copy className="w-3.5 h-3.5 text-muted-foreground/50 group-hover/copy:text-foreground shrink-0" />
-    </button>
-      <span className="mt-3.5 text-xs w-60 line-clamp-2 text-muted-foreground transition-colors">Contact for EasyPaisa, JazzCash or Bank Transfer Also Available</span>
-    </div>
   </div>
 </div>
 </div>
   </section>
 
 {/* Footer */}
-<footer className="w-full bg-foreground text-background py-12 md:py-16">
-  <div className="container mx-auto px-4 md:px-8">
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 text-center md:text-left">
+<footer className="w-full py-12 bg-foreground text-background md:py-16">
+  <div className="container px-4 mx-auto md:px-8">
+    <div className="grid grid-cols-1 gap-10 text-center sm:grid-cols-2 md:grid-cols-4 md:gap-12 md:text-left">
 
       {/* Brand */}
-      <div className="sm:col-span-2 flex flex-col items-center md:items-start">
+      <div className="flex flex-col items-center sm:col-span-2 md:items-start">
         <Link to="/">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="group flex items-center gap-1 shrink-0 mb-4"
+            className="flex items-center gap-1 mb-4 group shrink-0"
           >
-            <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide select-none">
+            <h1 className="text-3xl font-extrabold tracking-wide select-none md:text-4xl">
               <span className="dark:text-[#061A74] group-hover:text-[#0A2CA8] text-primary transition-colors duration-300">
                 T
               </span>
@@ -1161,12 +1168,12 @@ const LandingPage: React.FC = () => {
           </button>
         </Link>
 
-        <p className="text-sm text-background/70 max-w-sm text-pretty leading-relaxed">
+        <p className="max-w-sm text-sm leading-relaxed text-background/70 text-pretty">
           Empowering Young Minds to Learn, to Create something new and Grow.
           Building the Next Generation of Innovators for the Future.
         </p>
 
-        <div className="flex items-center justify-center md:justify-start gap-3 mt-6">
+        <div className="flex items-center justify-center gap-3 mt-6 md:justify-start">
           {SOCIAL_LINKS.map((social) => (
             <motion.a
               key={social.label}
@@ -1174,7 +1181,7 @@ const LandingPage: React.FC = () => {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group cursor-pointer"
+              className="flex items-center gap-2 transition-colors cursor-pointer text-muted-foreground hover:text-foreground group"
             >
               <span className="p-2.5 rounded-full group-hover:border-primary/30 group-hover:shadow-md transition-all duration-300 hover:text-blue-500 hover:scale-110 cursor-pointer hover:animate-bounce">
                 {social.icon}
@@ -1186,13 +1193,13 @@ const LandingPage: React.FC = () => {
 
       {/* Quick Links */}
       <div>
-        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4">Quick Links</h4>
+        <h4 className="mb-4 text-sm font-semibold tracking-wider uppercase">Quick Links</h4>
         <ul className="space-y-2.5 flex flex-col items-center md:items-start">
           {SECTIONS.map((section) => (
             <li key={section.id}>
               <button
                 onClick={() => scrollToSection(section.id)}
-                className="text-sm text-background/70 hover:text-background hover:underline hover:decoration-wavy hover:decoration-purple-600 hover:underline-offset-4 transition-colors"
+                className="text-sm transition-colors text-background/70 hover:text-background hover:underline hover:decoration-wavy hover:decoration-purple-600 hover:underline-offset-4"
               >
                 {section.label}
               </button>
@@ -1203,13 +1210,13 @@ const LandingPage: React.FC = () => {
 
       {/* Courses */}
       <div>
-        <h4 className="text-sm font-semibold uppercase tracking-wider mb-4">Courses</h4>
+        <h4 className="mb-4 text-sm font-semibold tracking-wider uppercase">Courses</h4>
         <ul className="space-y-2.5 flex flex-col items-center md:items-start">
           {COURSES.slice(0, 4).map((course) => (
             <li key={course.id}>
               <button
                 onClick={() => scrollToSection('courses')}
-                className="text-sm text-background/70 hover:text-background hover:underline hover:decoration-wavy hover:decoration-purple-600 hover:underline-offset-4 transition-colors"
+                className="text-sm transition-colors text-background/70 hover:text-background hover:underline hover:decoration-wavy hover:decoration-purple-600 hover:underline-offset-4"
               >
                 {course.title}
               </button>
@@ -1219,19 +1226,19 @@ const LandingPage: React.FC = () => {
       </div>
     </div>
 
-    <div className="mt-12 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+    <div className="flex flex-col items-center justify-between gap-4 pt-8 mt-12 text-center border-t border-background/10 md:flex-row md:text-left">
       <p className="text-xs text-background/50">
         © {new Date().getFullYear()}{' '}
         <Link
           to="/"
-          className="font-semibold hover:underline hover:decoration-wavy hover:decoration-purple-600 hover:underline-offset-4 transition-colors"
+          className="font-semibold transition-colors hover:underline hover:decoration-wavy hover:decoration-purple-600 hover:underline-offset-4"
         >
           TwinX Labs
         </Link>
         . All rights reserved. Learn Today • Create Tomorrow.
       </p>
 
-      <span className="text-xs text-background/50 flex items-center gap-1">
+      <span className="flex items-center gap-1 text-xs text-background/50">
         Built with
         <span className="dark:text-primary text-2xl px-0.5 text-red-400 hover:animate-ping">
           &#9825;

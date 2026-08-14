@@ -20,6 +20,15 @@ All colors MUST be HSL.
   100% { background-position: 0% 50%; }
 }
 
+@keyframes ticker {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @layer base {
   :root {
     --radius: 0.75rem;

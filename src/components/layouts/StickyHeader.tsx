@@ -10,10 +10,14 @@ import { Link } from "react-router-dom";
 const NAV_LINKS = [
   { id: 'courses', label: 'Courses' },
   { id: 'why-join', label: 'Why Join' },
-  { id: 'gallery', label: 'Gallery' },
+  { id: 'workshops', label: 'Workshops' },
+  { id: 'testimonials', label: 'Testimonials' },
   { id: 'services', label: 'Services' },
   { id: 'contact', label: 'Contact' },
 ];
+
+const AZADI_DEADLINE = new Date('2026-08-15T00:00:00');
+const isBeforeAzadiDeadline = new Date() <= AZADI_DEADLINE;
 
 const StickyHeader: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -48,39 +52,55 @@ const StickyHeader: React.FC = () => {
             className="fixed top-0 left-0 right-0 z-50 border-b shadow-sm bg-background/90 backdrop-blur-md border-border/60"
           >
             <div className="container flex items-center justify-between h-16 px-4 mx-auto md:px-8">
-              {/* Logo */}
-<Link to="/"><button
-  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-  className="group flex items-center gap-1 shrink-0"
->
-  <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide select-none">
-    <span className="text-[#061A74] group-hover:text-[#0A2CA8] transition-colors duration-300 dark:text-foreground">
-      T
-    </span>
+{/* Logo */}
+<Link to="/">
+  <button
+    id="tx-logo"
+    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    className="flex items-center gap-1 group shrink-0"
+  >
+    <h1 className="text-3xl font-extrabold tracking-wide select-none md:text-4xl">
+      <span
+        className={`transition-colors duration-300 ${
+          isBeforeAzadiDeadline
+            ? 'text-green-700 group-hover:text-green-800 dark:text-green-500 dark:group-hover:text-green-400'
+            : 'text-[#061A74] group-hover:text-[#0A2CA8] dark:text-foreground'
+        }`}
+      >
+        T
+      </span>
 
-    <span className="text-[#061A74] group-hover:text-[#0A2CA8] transition-colors duration-300 dark:text-foreground">
-      win
-    </span>
+      <span
+        className={`transition-colors duration-300 ${
+          isBeforeAzadiDeadline
+            ? 'text-green-700 group-hover:text-green-800 dark:text-green-500 dark:group-hover:text-green-400'
+            : 'text-[#061A74] group-hover:text-[#0A2CA8] dark:text-foreground'
+        }`}
+      >
+        win
+      </span>
 
-    <span
-      className="bg-gradient-to-br
-      from-sky-400
-      via-indigo-500
-      via-purple-600
-      via-pink-500
-      to-orange-400
-      bg-clip-text text-transparent
-      drop-shadow-sm
-      animate-[gradientShift_4s_ease_infinite] mx-1 bg-[length:200%_auto]"
-    >
-      X
-    </span>
+      <span
+        className={`bg-clip-text text-transparent drop-shadow-sm animate-[gradientShift_4s_ease_infinite] mx-1 bg-[length:200%_auto] ${
+          isBeforeAzadiDeadline
+            ? 'bg-gradient-to-br from-green-400 via-white-20 via-emerald-600 to-green-800'
+            : 'bg-gradient-to-br from-sky-400 via-indigo-500 via-purple-600 via-pink-500 to-orange-400'
+        }`}
+      >
+        X
+      </span>
 
-    <span className="text-[#061A74] group-hover:text-[#0A2CA8] transition-colors duration-300 dark:text-foreground">
-      Labs
-    </span>
-  </h1>
-</button>
+      <span
+        className={`transition-colors duration-300 ${
+          isBeforeAzadiDeadline
+            ? 'text-green-700 group-hover:text-green-800 dark:text-green-500 dark:group-hover:text-green-400'
+            : 'text-[#061A74] group-hover:text-[#0A2CA8] dark:text-foreground'
+        }`}
+      >
+        Labs
+      </span>
+    </h1>
+  </button>
 </Link>
 
               {/* Desktop Nav */}
@@ -89,7 +109,7 @@ const StickyHeader: React.FC = () => {
   <button
     key={link.id}
     onClick={() => scrollToSection(link.id)}
-    className="group relative w-full px-3 py-3 text-sm font-medium text-center whitespace-nowrap transition-colors rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted"
+    className="relative w-full px-3 py-3 text-sm font-medium text-center transition-colors rounded-lg group whitespace-nowrap text-muted-foreground hover:text-foreground hover:bg-muted"
   >
     {link.label}
     <span className="absolute left-1/2 -translate-x-1/2 bottom-1.5 h-0.5 w-0 group-hover:w-2/3 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-300 ease-out" />
@@ -148,7 +168,7 @@ const StickyHeader: React.FC = () => {
   <button
     key={link.id}
     onClick={() => scrollToSection(link.id)}
-    className="group relative w-full px-3 py-3 text-sm font-medium text-center items-center whitespace-nowrap transition-colors rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted"
+    className="relative items-center w-full px-3 py-3 text-sm font-medium text-center transition-colors rounded-lg group whitespace-nowrap text-muted-foreground hover:text-foreground hover:bg-muted"
   >
     {link.label}
     <span className="absolute left-1/2 -translate-x-1/2 bottom-1.5 h-0.5 w-0 group-hover:w-2/3 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-300 ease-out" />

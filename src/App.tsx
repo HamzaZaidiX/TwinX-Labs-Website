@@ -2,6 +2,9 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import IntersectObserver from "@/components/common/IntersectObserver";
 import StickyHeader from "@/components/layouts/StickyHeader";
+import AnnouncementBar from "@/components/layouts/AnnouncementBar";
+import {PromoPopup} from "@/components/layouts/PromoPopup";
+
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
@@ -11,7 +14,8 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <IntersectObserver />
-
+      <PromoPopup />
+      <AnnouncementBar />
       <StickyHeader />
 
       <div className="flex flex-col min-h-screen">

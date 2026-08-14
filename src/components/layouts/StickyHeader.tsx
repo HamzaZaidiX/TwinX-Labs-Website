@@ -166,8 +166,14 @@ const StickyHeader: React.FC = () => {
                   <nav className="flex flex-col gap-1 px-4 py-3">
                   {NAV_LINKS.map((link) => (
   <button
-    key={link.id}
-    onClick={() => scrollToSection(link.id)}
+  key={link.id}
+  onClick={() => {
+    setMobileOpen(false);
+    // wait for the menu's collapse animation to finish before scrolling,
+    setTimeout(() => {
+      scrollToSection(link.id);
+    }, 300); // slightly longer than your motion.div's 0.25s exit transition
+  }}
     className="relative items-center w-full px-3 py-3 text-sm font-medium text-center transition-colors rounded-lg group whitespace-nowrap text-muted-foreground hover:text-foreground hover:bg-muted"
   >
     {link.label}
@@ -176,7 +182,13 @@ const StickyHeader: React.FC = () => {
 ))}
                     <Button
                       className="w-full mt-2 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-90 h-11"
-                      onClick={() => scrollToSection('contact')}
+                      onClick={() => {
+                        setMobileOpen(false);
+                    
+                        setTimeout(() => {
+                          scrollToSection('contact');
+                        }, 300);
+                      }}
                     >
                       Enroll Now
                     </Button>

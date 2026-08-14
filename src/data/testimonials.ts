@@ -26,7 +26,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     id: 4,
-    imageUrl: 'https://i.ibb.co/tM7bMT0J/r-Hl-Ayv.jpg',
+    imageUrl: 'https://i.ibb.co/N6VqvCvh/parent-testimonial.jpg',
     name: 'Happy Parent sharing experience with TwinX Labs',
     caption: 'Happy Parent sharing experience with TwinX Labs',
   },

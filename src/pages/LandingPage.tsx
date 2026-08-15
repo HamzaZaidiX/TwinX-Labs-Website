@@ -332,7 +332,8 @@ const LandingPage: React.FC = () => {
   <div className="flex justify-center pt-6">
     <Link to="/">
       <motion.img
-        src="/images/logo/logo1.png"
+        {/* src="/images/logo/logo1.png" */}
+        src="https://res.cloudinary.com/npzpduxr/image/upload/v1786808935/logo1.png"
         alt="TwinX Labs"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}

@@ -78,37 +78,37 @@ const BENEFITS = [
 const WORKSHOPS = [
   {
     id: 1,
-    imageUrl: 'https://i.ibb.co/7NV8fj04/scratch-certificate.jpg',
+    imageUrl: 'https://res.cloudinary.com/npzpduxr/image/upload/f_auto,q_auto/scratch-certificate',
     title: 'Our Star Shines! Certificates Awarded',
     caption: 'Our Star Shines! Certificates Awarded to Successful Students',
     },
   {
     id: 2,
-    imageUrl: 'https://i.ibb.co/vvDyN0cm/c-Jlgz-G.jpg',
+    imageUrl: 'https://res.cloudinary.com/npzpduxr/image/upload/v1786805344/cJlgzG.jpg',
     title: 'Another Star Shines! Certificates Awarded',
     caption: 'Another Star Shines! Certificates Awarded to Successful Students',
   },
   {
     id: 3,
-    imageUrl: 'https://i.ibb.co/fc8t8kB/Tmrri-C.jpg',
+    imageUrl: 'https://res.cloudinary.com/npzpduxr/image/upload/v1786805533/Tmrri-C.jpg',
     title: 'A Glimpse of our Online Class',
     caption: 'A Glimpse of our Online Class',
   },
   {
     id: 4,
-    imageUrl: 'https://i.ibb.co/9mBXBVYh/Zy-Om-Th.jpg',
+    imageUrl: 'https://res.cloudinary.com/npzpduxr/image/upload/v1786805616/Zy-Om-Th.jpg',
     title: 'Sneak Peek of Our Gorgeous Certificates Awarded',
     caption: 'Sneak Peek of Our Gorgeous Certificates Awarded',
   },
   {
     id: 5,
-    imageUrl: 'https://i.ibb.co/jZLS99dM/lfa-BLA.jpg',
+    imageUrl: 'https://res.cloudinary.com/npzpduxr/image/upload/v1786805683/lfa-BLA.jpg',
     title: 'A Glimpse of our Online Class',
     caption: 'A Glimpse of our Online Class',
   },
   {
     id: 6,
-    imageUrl: 'https://i.ibb.co/rKQHSJVm/ESXYRo.jpg',
+    imageUrl: 'https://res.cloudinary.com/npzpduxr/image/upload/v1786805739/ESXYRo.jpg',
     title: 'Our Star Batch 1-26 Wrap-Up',
     caption: 'Our Star Batch 1-26 Wrap-Up',
   },

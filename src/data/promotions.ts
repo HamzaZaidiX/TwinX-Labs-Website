@@ -16,7 +16,7 @@ export const PROMOTIONS: Promotion[] = [
   },
   {
     id: 2,
-    imageUrl: 'https://i.ibb.co/Jj2HDL4T/ya-Hop-P.jpg',
+    imageUrl: 'https://i.ibb.co/fzVybkpQ/ya-Hop-P.jpg',
     description: 'Need custom services DM us!',
     buttonText: 'Give Qoute',
     buttonLink: 'https://api.whatsapp.com/send?phone=923373794682&app=facebook&entry_point=page_cta&fbclid=IwY2xjawFfi9gBHUhVHIUy2pIkHelXuOqxRbDCgRi-MgHY7s7Ca9QM4aTeZvJRiN2J9FbU5Q',
